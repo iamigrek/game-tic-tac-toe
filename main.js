@@ -1,52 +1,127 @@
-const button = document.querySelectorAll('[data-main-btn]');
+// const button = document.querySelectorAll('[data-main-btn]');
+// const buttonClass = document.querySelectorAll('.game__btn');
+// const status = document.querySelector('.status');
+
+// let i = 0;
+
+// let def = [];
+// let win = [1, 1, 1, 0, 0, 0, 0, 0, 0];
+
+// button.forEach(function (item) {
+//   item.addEventListener('click', function (e) {
+//     item.textContent = `${i % 2 == 0 ? 'O' : 'X'}`;
+//     item.value = `${i % 2 == 0 ? 2 : 1}`;
+
+//     def[this.dataset.mainBtn] = `${i % 2 == 0 ? 1 : 0}`;
+//     i++;
+//     console.log(def);
+//     if (def == win) {
+//       alert('WIN!');
+//     }
+//   });
+// });
+
+// const button = document.querySelectorAll('[data-main-btn]');
+// const buttonClass = document.querySelectorAll('.game__btn');
+// const status = document.querySelector('.status');
+
+// let i = 0;
+
+// let def = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+// var winIndex = [
+//   [1, 1, 1],
+//   [4, 5, 6],
+//   [7, 8, 9],
+//   [1, 4, 7],
+//   [2, 5, 8],
+//   [3, 6, 9],
+//   [1, 5, 9],
+//   [3, 5, 7],
+// ];
+
+// button.forEach(function (item) {
+//   item.addEventListener('click', function (e) {
+//     item.textContent = `${i % 2 == 0 ? 'O' : 'X'}`;
+//     item.value = `${i % 2 == 0 ? 2 : 1}`;
+
+//     def[this.dataset.mainBtn] = i % 2 == 0 ? 1 : 0;
+//     i++;
+//     //
+//     for (var k in winIndex) {
+//       var win = true;
+//       for (var j in winIndex[k]) {
+//         var id = winIndex[k][j];
+//         var ind = def.indexOf(id);
+
+//         if (ind == -1) {
+//           win = false;
+//         }
+//       }
+
+//       if (win) console.log('win');
+//     }
+//   });
+// });
+
+// ========================
+
+const button = document.querySelectorAll('[data-y]');
 const buttonClass = document.querySelectorAll('.game__btn');
 const status = document.querySelector('.status');
 
-const button1 = document.querySelector('#btn-1');
-const button2 = document.querySelector('#btn-2');
-const button3 = document.querySelector('#btn-3');
+let i = 1;
 
-const button4 = document.querySelector('#btn-4');
-const button5 = document.querySelector('#btn-5');
-const button6 = document.querySelector('#btn-6');
+let defx = [
+  [0, 0, 0],
+  [0, 0, 0],
+  [0, 0, 0],
+];
 
-const button7 = document.querySelector('#btn-7');
-const button8 = document.querySelector('#btn-8');
-const button9 = document.querySelector('#btn-9');
+let defo = [
+  [0, 0, 0],
+  [0, 0, 0],
+  [0, 0, 0],
+];
 
-let i = 0;
-let res = 0;
+var winIndex = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  // [1, 4, 7],
+  // [2, 5, 8],
+  // [3, 6, 9],
+  // [1, 5, 9],
+  // [3, 5, 7],
+];
 
 button.forEach(function (item) {
   item.addEventListener('click', function (e) {
-    item.textContent = `${i % 2 == 0 ? 'X' : 'O'}`;
+    item.textContent = `${i % 2 == 0 ? 'O' : 'X'}`;
     item.value = `${i % 2 == 0 ? 2 : 1}`;
-    i++;
 
-    if (
-      button1.value + button2.value + button3.value == 111 ||
-      button4.value + button5.value + button6.value == 111 ||
-      button7.value + button8.value + button9.value == 111 ||
-      button7.value + button4.value + button1.value == 111 ||
-      button8.value + button5.value + button2.value == 111 ||
-      button9.value + button6.value + button3.value == 111 ||
-      button9.value + button5.value + button1.value == 111 ||
-      button7.value + button6.value + button3.value == 111
-    ) {
-      status.textContent = 'ПОБЕДИЛ "О"';
-    } else if (
-      button1.value + button2.value + button3.value == 222 ||
-      button4.value + button5.value + button6.value == 222 ||
-      button7.value + button8.value + button9.value == 222 ||
-      button7.value + button4.value + button1.value == 222 ||
-      button8.value + button5.value + button2.value == 222 ||
-      button9.value + button6.value + button3.value == 222 ||
-      button9.value + button5.value + button1.value == 222 ||
-      button7.value + button6.value + button3.value == 222
-    ) {
-      status.textContent = 'ПОБЕДИЛ "Х"';
-    } else {
-      status.textContent = 'Игра началась, пока что ничья!';
+    i % 2 == 0
+      ? (defx[this.dataset.y][this.dataset.x] = parseInt(this.dataset.pos))
+      : (defo[this.dataset.y][this.dataset.x] = parseInt(this.dataset.pos));
+
+    console.log(defx);
+    console.log(defo);
+    for (let k = 0; k < 3; k++) {
+      for (let l = 0; l < 3; l++) {
+        console.log('===/===');
+        console.log(defx[k]);
+
+        console.log(winIndex[l]);
+        console.log('===/===');
+        if (defx[k].join() == winIndex[l].join()) {
+          //для def нужно использовать двухмерный массив
+          alert('O WIN!!');
+        }
+        if (defo[k].join() == winIndex[l].join()) {
+          alert('X WIN!!');
+        }
+      }
     }
+    i++;
   });
 });
