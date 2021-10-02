@@ -1,8 +1,5 @@
 const gameBtn = document.querySelectorAll('[data-pos]');
 const gameBtnClear = document.querySelector('.game__clear');
-const gameBtnY = document.querySelectorAll('[data-y]');
-const gameBtnX = document.querySelectorAll('[data-x]');
-const gameBtnPos = document.querySelectorAll('[data-pos]');
 let i = 0;
 
 const gamerX = [
@@ -19,15 +16,15 @@ const gamerO = [
 
 gameBtn.forEach(element => {
   element.addEventListener('click', function () {
-    i % 2 == 0 ? (element.textContent = 'X') : (element.textContent = 'O');
-
-    i % 2 == 0
-      ? (gamerX[element.dataset.y][element.dataset.x] = parseInt(
-          element.dataset.pos
-        ))
-      : (gamerO[element.dataset.y][element.dataset.x] = parseInt(
-          element.dataset.pos
-        ));
+    if (element.innerHTML == ' ') {
+      if (i % 2 == 0) {
+        element.textContent = 'X';
+        gamerX[element.dataset.y][element.dataset.x] = element.dataset.pos;
+      } else {
+        element.textContent = 'O';
+        gamerO[element.dataset.y][element.dataset.x] = element.dataset.pos;
+      }
+    }
     i++;
 
     if (
@@ -65,7 +62,7 @@ function clear() {
     gamerO[f] = [0, 0, 0];
     gamerX[f] = [0, 0, 0];
     gameBtn.forEach(item => {
-      item.textContent = '';
+      item.textContent = ' ';
     });
   }
 }
