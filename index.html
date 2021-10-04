@@ -5,33 +5,83 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	<title>TIC-TAC-TOE</title>
-	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="./scss/style.css">
 </head>
 
 <body>
 
-	<ul>
-		<li><button class="game__btn" id="btn-1" data-pos=1 data-y='0' data-x='0'> </button></li>
-		<li><button class="game__btn" id="btn-2" data-pos=2 data-y='0' data-x='1'> </button></li>
-		<li><button class="game__btn" id="btn-3" data-pos=3 data-y='0' data-x='2'> </button></li>
+	<div class="game">
+		<h2 class="game__info">click to start playing</h2>
 
-		<li><button class="game__btn" id="btn-4" data-pos=4 data-y='1' data-x='0'> </button></li>
-		<li><button class="game__btn" id="btn-5" data-pos=5 data-y='1' data-x='1'> </button></li>
-		<li><button class="game__btn" id="btn-6" data-pos=6 data-y='1' data-x='2'> </button></li>
+		<div class="game__inner">
+			<div class="game__settings settings">
+				<h3 class="settings__status settings__status1">0</h3>
+				<input class="settings__player settings__player1" value="Player 1" type="text">
+				<div class="settings__value-wrapper">
+					<div class="settings__x">
+						<label class="settings__label settings__label--x">
+							<input checked class="settings__value" type="radio" name='player1'>
+							<span class="settings__style--x"></span>
+						</label>
+					</div>
+					<div class="settings__o">
 
-		<li><button class="game__btn" id="btn-7" data-pos=7 data-y='2' data-x='0'> </button></li>
-		<li><button class="game__btn" id="btn-8" data-pos=8 data-y='2' data-x='1'> </button></li>
-		<li><button class="game__btn" id="btn-9" data-pos=9 data-y='2' data-x='2'> </button></li>
-	</ul>
+						<label class="settings__label settings__label--o">
+							<input disabled class="settings__value" type="radio" name='player1'>
+							<span class="settings__style--o"></span>
+						</label>
+					</div>
+				</div>
+			</div>
 
-	<div class="right">
-		<h2 class="status">Нажми на кнопу, что бы начать играть</h2>
-		<button class="game__clear">CLEAR</button>
+			<div class="game__middle">
+				<ul class="game__list">
+					<li class="game__item"><button class="game__btn" id="btn-1" data-pos=1 data-y='0' data-x='0'> </button></li>
+					<li class="game__item"><button class="game__btn" id="btn-2" data-pos=2 data-y='0' data-x='1'> </button></li>
+					<li class="game__item"><button class="game__btn" id="btn-3" data-pos=3 data-y='0' data-x='2'> </button></li>
+					<li class="game__item"><button class="game__btn" id="btn-4" data-pos=4 data-y='1' data-x='0'> </button></li>
+					<li class="game__item"><button class="game__btn" id="btn-5" data-pos=5 data-y='1' data-x='1'> </button></li>
+					<li class="game__item"><button class="game__btn" id="btn-6" data-pos=6 data-y='1' data-x='2'> </button></li>
+					<li class="game__item"><button class="game__btn" id="btn-7" data-pos=7 data-y='2' data-x='0'> </button></li>
+					<li class="game__item"><button class="game__btn" id="btn-8" data-pos=8 data-y='2' data-x='1'> </button></li>
+					<li class="game__item"><button class="game__btn" id="btn-9" data-pos=9 data-y='2' data-x='2'> </button></li>
+				</ul>
+				<button class="game__clear">CLEAR</button>
+			</div>
+
+
+			<div class="game__settings settings">
+				<h3 class="settings__status settings__status2">0</h3>
+				<input class="settings__player settings__player2" value="Player 2" type="text">
+				<div class="settings__value-wrapper">
+					<div class="settings__x">
+						<label class="settings__label settings__label--x">
+							<input disabled class="settings__value" type="radio" name='player2'>
+							<span class="settings__style--x"></span>
+						</label>
+					</div>
+					<div class="settings__o">
+
+						<label class="settings__label settings__label--o">
+							<input checked class="settings__value" type="radio" name='player2'>
+							<span class="settings__style--o"></span>
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 
 
-	<script src="./main.js"></script>
+
+
+
+	<script src="./js/main.js"></script>
 </body>
 
 </html>

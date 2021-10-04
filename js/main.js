@@ -1,6 +1,14 @@
 const gameBtn = document.querySelectorAll('[data-pos]');
 const gameBtnClear = document.querySelector('.game__clear');
+const gameInfo = document.querySelector('.game__info');
+const gamePlayer1 = document.querySelector('.settings__player1');
+const gamePlayer2 = document.querySelector('.settings__player2');
+const gameStatus1 = document.querySelector('.settings__status1');
+const gameStatus2 = document.querySelector('.settings__status2');
 let i = 0;
+
+winCounter1 = 0;
+winCounter2 = 0;
 
 const gamerX = [
   [0, 0, 0],
@@ -18,10 +26,12 @@ gameBtn.forEach(element => {
   element.addEventListener('click', function () {
     if (element.innerHTML == ' ') {
       if (i % 2 == 0) {
-        element.textContent = 'X';
+        // element.textContent = 'X';
+        element.classList.add('game__x');
         gamerX[element.dataset.y][element.dataset.x] = element.dataset.pos;
       } else {
-        element.textContent = 'O';
+        // element.textContent = 'O';
+        element.classList.add('game__o');
         gamerO[element.dataset.y][element.dataset.x] = element.dataset.pos;
       }
     }
@@ -37,7 +47,9 @@ gameBtn.forEach(element => {
       gamerX[0][0] * gamerX[1][1] * gamerX[2][2] == 45 ||
       gamerX[0][2] * gamerX[1][1] * gamerX[2][0] == 105
     ) {
-      alert('WIN X');
+      gameInfo.textContent = `Win ${gamePlayer1.value}`;
+      winCounter1 = winCounter1 + 1;
+      gameStatus1.textContent = winCounter1;
       clear();
     } else if (
       gamerO[0][0] * gamerO[0][1] * gamerO[0][2] == 6 ||
@@ -49,7 +61,9 @@ gameBtn.forEach(element => {
       gamerO[0][0] * gamerO[1][1] * gamerO[2][2] == 45 ||
       gamerO[0][2] * gamerO[1][1] * gamerO[2][0] == 105
     ) {
-      alert('WIN O');
+      gameInfo.textContent = `Win ${gamePlayer2.value}`;
+      winCounter2 = winCounter2 + 1;
+      gameStatus2.textContent = winCounter2;
       clear();
     }
   });
@@ -62,7 +76,8 @@ function clear() {
     gamerO[f] = [0, 0, 0];
     gamerX[f] = [0, 0, 0];
     gameBtn.forEach(item => {
-      item.textContent = ' ';
+      item.classList.remove('game__o');
+      item.classList.remove('game__x');
     });
   }
 }

@@ -1,0 +1,204 @@
+body {
+  background-color: #113950;
+  font-family: 'Teko', sans-serif;
+}
+
+.game {
+  &__info {
+    text-align: center;
+    margin: 0;
+    color: #64b4e2;
+    font-weight: 400;
+    font-size: 50px;
+    text-transform: uppercase;
+  }
+  &__inner {
+    display: flex;
+    justify-content: space-around;
+  }
+  &__middle {
+  }
+  &__list {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px;
+  }
+  &__btn {
+    width: 100px;
+    height: 100px;
+    border: none;
+    border-radius: 10px;
+    background-color: #1d4e6b;
+    cursor: pointer;
+  }
+  &__clear {
+    padding: 5px;
+    width: 100%;
+    border: 2px solid #35759b;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #35759b;
+    font-family: 'Teko', sans-serif;
+    font-size: 25px;
+    cursor: pointer;
+    transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+    &:hover {
+      background-color: #35759b;
+      color: #113950;
+    }
+  }
+  &__x,
+  &__o {
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+    }
+    &::before {
+      content: '';
+      position: absolute;
+    }
+  }
+  &__x {
+    background-color: #f06262;
+    &::after,
+    &::before {
+      border-radius: 50px;
+      width: 70%;
+      height: 20%;
+      background-color: #113950;
+    }
+    &::after {
+      transform: rotate(-45deg) translate(-30%, -150%);
+    }
+    &::before {
+      transform: rotate(45deg) translate(-40%, 100%);
+    }
+  }
+  &__o {
+    background-color: #62f0cc;
+    &::after,
+    &::before {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+    }
+    &::after {
+      width: 70%;
+      height: 70%;
+      background-color: #113950;
+    }
+    &::before {
+      width: 35%;
+      height: 35%;
+      background-color: #62f0cc;
+      z-index: 3;
+    }
+  }
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__status {
+    color: #5daad6;
+    margin: 0;
+    font-weight: 300;
+    font-size: 50px;
+  }
+  &__player {
+    max-width: 200px;
+    text-align: center;
+    padding: 10px 20px;
+    border: none;
+    background-color: transparent;
+    border-radius: 10px;
+    color: #35759b;
+    font-size: 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-weight: 600;
+    outline: none;
+    &::placeholder {
+      color: #35759b;
+      font-weight: 600;
+    }
+  }
+  &__value-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__value {
+    visibility: hidden;
+    position: absolute;
+    &:checked + .settings__style--o {
+      background-color: #62f0cc;
+    }
+    &:checked + .settings__style--o::before {
+      background-color: #62f0cc;
+    }
+    &:checked + .settings__style--x {
+      background-color: #f06262;
+    }
+  }
+  &__label {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #1d4e6b;
+    cursor: pointer;
+    margin: 5px;
+  }
+  &__style--x,
+  &__style--o {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    &::after,
+    &::before {
+      content: '';
+      position: absolute;
+      background-color: #113950;
+      top: 50%;
+      left: 50%;
+    }
+  }
+  &__style--o {
+    &::after {
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      width: 70%;
+      height: 70%;
+    }
+    &::before {
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      width: 35%;
+      height: 35%;
+      background-color: #1d4e6b;
+      z-index: 3;
+    }
+  }
+  &__style--x {
+    &::after {
+      transform: rotate(-45deg) translate(-30%, -135%);
+      border-radius: 50px;
+      width: 70%;
+      height: 20%;
+    }
+    &::before {
+      transform: rotate(45deg) translate(-40%, 100%);
+      border-radius: 50px;
+      width: 70%;
+      height: 20%;
+    }
+  }
+}
