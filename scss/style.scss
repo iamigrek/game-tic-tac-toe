@@ -3,23 +3,39 @@ body {
   font-family: 'Teko', sans-serif;
 }
 
+.container {
+  padding: 0 30px;
+}
+
 .game {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   &__info {
     text-align: center;
     margin: 0;
     color: #64b4e2;
     font-weight: 400;
+    line-height: 45px;
     font-size: 50px;
     text-transform: uppercase;
+    cursor: default;
   }
   &__inner {
     display: flex;
     justify-content: space-around;
+    @media (max-width: 700px) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
   &__middle {
     &-btns {
       display: flex;
       justify-content: space-between;
+      margin-bottom: 20px;
     }
   }
   &__list {
@@ -30,13 +46,25 @@ body {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 15px;
   }
-  &__btn {
+  &__item {
     width: 100px;
     height: 100px;
+    @media (max-width: 400px) {
+      width: 90px;
+      height: 90px;
+    }
+  }
+  &__btn {
+    width: 100%;
+    height: 100%;
     border: none;
     border-radius: 10px;
     background-color: #1d4e6b;
     cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+    &:hover {
+      background-color: #245f81;
+    }
   }
   &__clear {
     padding: 5px;
@@ -68,8 +96,14 @@ body {
       position: absolute;
     }
   }
+
   &__x {
     background-color: #f06262;
+    transition: background-color 0.1s ease-in-out;
+    &:hover {
+      background-color: #f06262;
+      cursor: default;
+    }
     &::after,
     &::before {
       border-radius: 50px;
@@ -86,6 +120,11 @@ body {
   }
   &__o {
     background-color: #62f0cc;
+    transition: background-color 0.1s ease-in-out;
+    &:hover {
+      background-color: #62f0cc;
+      cursor: default;
+    }
     &::after,
     &::before {
       top: 50%;
@@ -112,9 +151,11 @@ body {
   align-items: center;
   &__status {
     color: #5daad6;
+    cursor: default;
     margin: 0;
     font-weight: 300;
     font-size: 50px;
+    line-height: 45px;
   }
   &__player {
     max-width: 200px;
@@ -129,9 +170,13 @@ body {
     text-transform: uppercase;
     font-weight: 600;
     outline: none;
+    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
     &::placeholder {
-      color: #35759b;
       font-weight: 600;
+    }
+    &:hover {
+      background-color: #265875;
+      color: #64b4e2;
     }
   }
   &__value-wrapper {
@@ -177,6 +222,7 @@ body {
     }
   }
   &__style--o {
+    transition: background-color 0.1s ease-in-out;
     &::after {
       transform: translate(-50%, -50%);
       border-radius: 50%;
@@ -190,6 +236,13 @@ body {
       height: 35%;
       background-color: #1d4e6b;
       z-index: 3;
+      transition: background-color 0.1s ease-in-out;
+    }
+    &:hover {
+      background-color: #3e9e86;
+      &::before {
+        background-color: #3e9e86;
+      }
     }
   }
   &__style--x {
@@ -204,6 +257,9 @@ body {
       border-radius: 50px;
       width: 70%;
       height: 20%;
+    }
+    &:hover {
+      background-color: #b94f4f;
     }
   }
 }
