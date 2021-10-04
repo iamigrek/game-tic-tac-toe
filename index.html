@@ -24,14 +24,14 @@
 				<div class="settings__value-wrapper">
 					<div class="settings__x">
 						<label class="settings__label settings__label--x">
-							<input checked class="settings__value" type="radio" name='player1'>
+							<input checked id='pick-1' value="x" class="settings__value" type="radio" name='player1'>
 							<span class="settings__style--x"></span>
 						</label>
 					</div>
 					<div class="settings__o">
 
 						<label class="settings__label settings__label--o">
-							<input disabled class="settings__value" type="radio" name='player1'>
+							<input id='pick-2' value="o" class="settings__value" type="radio" name='player1'>
 							<span class="settings__style--o"></span>
 						</label>
 					</div>
@@ -50,7 +50,10 @@
 					<li class="game__item"><button class="game__btn" id="btn-8" data-pos=8 data-y='2' data-x='1'> </button></li>
 					<li class="game__item"><button class="game__btn" id="btn-9" data-pos=9 data-y='2' data-x='2'> </button></li>
 				</ul>
-				<button class="game__clear">CLEAR</button>
+				<div class="game__middle-btns">
+					<button class="game__clear">CLEAR</button>
+					<button class="game__clear game__newgame">new game</button>
+				</div>
 			</div>
 
 
@@ -60,14 +63,14 @@
 				<div class="settings__value-wrapper">
 					<div class="settings__x">
 						<label class="settings__label settings__label--x">
-							<input disabled class="settings__value" type="radio" name='player2'>
+							<input id='pick-3' value="x" class="settings__value" type="radio" name='player2'>
 							<span class="settings__style--x"></span>
 						</label>
 					</div>
 					<div class="settings__o">
 
 						<label class="settings__label settings__label--o">
-							<input checked class="settings__value" type="radio" name='player2'>
+							<input checked id='pick-4' value="o" class="settings__value" type="radio" name='player2'>
 							<span class="settings__style--o"></span>
 						</label>
 					</div>

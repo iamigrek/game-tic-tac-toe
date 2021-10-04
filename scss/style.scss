@@ -17,6 +17,10 @@ body {
     justify-content: space-around;
   }
   &__middle {
+    &-btns {
+      display: flex;
+      justify-content: space-between;
+    }
   }
   &__list {
     list-style: none;
@@ -36,7 +40,7 @@ body {
   }
   &__clear {
     padding: 5px;
-    width: 100%;
+    width: 48%;
     border: 2px solid #35759b;
     border-radius: 10px;
     background-color: transparent;
@@ -44,12 +48,14 @@ body {
     font-family: 'Teko', sans-serif;
     font-size: 25px;
     cursor: pointer;
+    text-transform: uppercase;
     transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
     &:hover {
       background-color: #35759b;
       color: #113950;
     }
   }
+
   &__x,
   &__o {
     position: relative;
@@ -100,7 +106,6 @@ body {
     }
   }
 }
-
 .settings {
   display: flex;
   flex-direction: column;
