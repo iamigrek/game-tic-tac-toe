@@ -6,21 +6,38 @@ const gamePlayer1 = document.querySelector('.settings__player1');
 const gamePlayer2 = document.querySelector('.settings__player2');
 const gameStatus1 = document.querySelector('.settings__status1');
 const gameStatus2 = document.querySelector('.settings__status2');
-
-let i = 0;
-
-winCounter1 = 0;
-winCounter2 = 0;
+const pick1 = document.getElementById('pick-1');
+const pick2 = document.getElementById('pick-2');
+const pick3 = document.getElementById('pick-3');
+const pick4 = document.getElementById('pick-4');
+const setVal = document.querySelectorAll('.settings__value');
 
 const gamerX = [[], [], []];
-
 const gamerO = [[], [], []];
+let i = 0;
+let winCounter1 = 0;
+let winCounter2 = 0;
+
+pick1.addEventListener('click', function () {
+  pick1.checked == true && (pick4.checked = true);
+});
+
+pick2.addEventListener('click', function () {
+  pick2.checked == true && (pick3.checked = true);
+});
+
+pick3.addEventListener('click', function () {
+  pick3.checked == true && (pick2.checked = true);
+});
+
+pick4.addEventListener('click', function () {
+  pick4.checked == true && (pick1.checked = true);
+});
 
 gameBtn.forEach(element => {
   element.addEventListener('click', function () {
     if (element.innerHTML == ' ') {
       if (i % 2 == 0) {
-        // element.textContent = 'X';
         if (
           !element.classList.contains('game__o') &&
           !element.classList.contains('game__x')
@@ -32,7 +49,6 @@ gameBtn.forEach(element => {
           gameInfo.textContent = 'section occupied!!!';
         }
       } else {
-        // element.textContent = 'O';
         if (
           !element.classList.contains('game__o') &&
           !element.classList.contains('game__x')
@@ -45,7 +61,6 @@ gameBtn.forEach(element => {
         }
       }
     }
-    console.log(i);
     if (i > 0) {
       setVal.forEach(item => {
         item.setAttribute('disabled', 'disabled');
@@ -62,12 +77,21 @@ gameBtn.forEach(element => {
       gamerX[0][0] * gamerX[1][1] * gamerX[2][2] == 45 ||
       gamerX[0][2] * gamerX[1][1] * gamerX[2][0] == 105
     ) {
-      gameInfo.textContent = `Win ${gamePlayer1.value}`;
-      winCounter1 = winCounter1 + 1;
-      gameStatus1.textContent = winCounter1;
-      gameBtn.forEach(item => {
-        item.setAttribute('disabled', 'disabled');
-      });
+      if (pick1.checked) {
+        gameInfo.textContent = `Win ${gamePlayer1.value}`;
+        winCounter1 = winCounter1 + 1;
+        gameStatus1.textContent = winCounter1;
+        gameBtn.forEach(item => {
+          item.setAttribute('disabled', 'disabled');
+        });
+      } else if (pick3.checked) {
+        gameInfo.textContent = `Win ${gamePlayer2.value}`;
+        winCounter2 = winCounter2 + 1;
+        gameStatus2.textContent = winCounter2;
+        gameBtn.forEach(item => {
+          item.setAttribute('disabled', 'disabled');
+        });
+      }
     } else if (
       gamerO[0][0] * gamerO[0][1] * gamerO[0][2] == 6 ||
       gamerO[1][0] * gamerO[1][1] * gamerO[1][2] == 120 ||
@@ -78,12 +102,21 @@ gameBtn.forEach(element => {
       gamerO[0][0] * gamerO[1][1] * gamerO[2][2] == 45 ||
       gamerO[0][2] * gamerO[1][1] * gamerO[2][0] == 105
     ) {
-      gameInfo.textContent = `Win ${gamePlayer2.value}`;
-      winCounter2 = winCounter2 + 1;
-      gameStatus2.textContent = winCounter2;
-      gameBtn.forEach(item => {
-        item.setAttribute('disabled', 'disabled');
-      });
+      if (pick4.checked) {
+        gameInfo.textContent = `Win ${gamePlayer2.value}`;
+        winCounter2 = winCounter2 + 1;
+        gameStatus2.textContent = winCounter2;
+        gameBtn.forEach(item => {
+          item.setAttribute('disabled', 'disabled');
+        });
+      } else if (pick2.checked) {
+        gameInfo.textContent = `Win ${gamePlayer1.value}`;
+        winCounter1 = winCounter1 + 1;
+        gameStatus1.textContent = winCounter1;
+        gameBtn.forEach(item => {
+          item.setAttribute('disabled', 'disabled');
+        });
+      }
     } else if (i == 9) {
       gameInfo.textContent = 'draw';
     }
@@ -97,6 +130,9 @@ function newgame() {
   gameStatus1.textContent = winCounter1;
   winCounter2 = 0;
   gameStatus2.textContent = winCounter2;
+  setVal.forEach(item => {
+    item.removeAttribute('disabled', 'disabled');
+  });
   clear();
 }
 
@@ -115,25 +151,5 @@ function clear() {
       item.removeAttribute('disabled', 'disabled');
     });
   }
+  gameInfo.textContent = 'click to start playing';
 }
-
-const pick1 = document.getElementById('pick-1');
-const pick2 = document.getElementById('pick-2');
-const pick3 = document.getElementById('pick-3');
-const pick4 = document.getElementById('pick-4');
-const setVal = document.querySelectorAll('.settings__value');
-pick1.addEventListener('click', function () {
-  pick1.checked == true && (pick4.checked = true);
-});
-
-pick2.addEventListener('click', function () {
-  pick2.checked == true && (pick3.checked = true);
-});
-
-pick3.addEventListener('click', function () {
-  pick3.checked == true && (pick2.checked = true);
-});
-
-pick4.addEventListener('click', function () {
-  pick4.checked == true && (pick1.checked = true);
-});
