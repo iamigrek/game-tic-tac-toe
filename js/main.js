@@ -10,33 +10,40 @@ let i = 0;
 winCounter1 = 0;
 winCounter2 = 0;
 
-const gamerX = [
-  [0, 0, 0],
-  [0, 0, 0],
-  [0, 0, 0],
-];
+const gamerX = [[], [], []];
 
-const gamerO = [
-  [0, 0, 0],
-  [0, 0, 0],
-  [0, 0, 0],
-];
+const gamerO = [[], [], []];
 
 gameBtn.forEach(element => {
   element.addEventListener('click', function () {
     if (element.innerHTML == ' ') {
       if (i % 2 == 0) {
         // element.textContent = 'X';
-        element.classList.add('game__x');
-        gamerX[element.dataset.y][element.dataset.x] = element.dataset.pos;
+        if (
+          !element.classList.contains('game__o') &&
+          !element.classList.contains('game__x')
+        ) {
+          element.classList.add('game__x');
+          gamerX[element.dataset.y][element.dataset.x] = element.dataset.pos;
+          i++;
+        } else {
+          gameInfo.textContent = 'section occupied!!!';
+        }
       } else {
         // element.textContent = 'O';
-        element.classList.add('game__o');
-        gamerO[element.dataset.y][element.dataset.x] = element.dataset.pos;
+        if (
+          !element.classList.contains('game__o') &&
+          !element.classList.contains('game__x')
+        ) {
+          element.classList.add('game__o');
+          gamerO[element.dataset.y][element.dataset.x] = element.dataset.pos;
+          i++;
+        } else {
+          gameInfo.textContent = 'section occupied!!!';
+        }
       }
     }
-    i++;
-
+    console.log(i);
     if (
       gamerX[0][0] * gamerX[0][1] * gamerX[0][2] == 6 ||
       gamerX[1][0] * gamerX[1][1] * gamerX[1][2] == 120 ||
@@ -65,6 +72,9 @@ gameBtn.forEach(element => {
       winCounter2 = winCounter2 + 1;
       gameStatus2.textContent = winCounter2;
       clear();
+    } else if (i == 9) {
+      gameInfo.textContent = 'draw';
+      clear();
     }
   });
 });
@@ -75,6 +85,7 @@ function clear() {
   for (let f = 0; f < 3; f++) {
     gamerO[f] = [0, 0, 0];
     gamerX[f] = [0, 0, 0];
+    i = 0;
     gameBtn.forEach(item => {
       item.classList.remove('game__o');
       item.classList.remove('game__x');
