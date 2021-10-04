@@ -5,6 +5,19 @@ body {
 
 .container {
   padding: 0 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  .container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 
 .game {
@@ -25,6 +38,12 @@ body {
   font-size: 50px;
   text-transform: uppercase;
   cursor: default;
+}
+
+@media (max-width: 700px) {
+  .game__info {
+    display: none;
+  }
 }
 
 .game__inner {
@@ -115,6 +134,12 @@ body {
   color: #113950;
 }
 
+@media (max-width: 400px) {
+  .game__clear {
+    padding: 3px;
+  }
+}
+
 .game__x, .game__o {
   position: relative;
 }
@@ -200,6 +225,13 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media (max-width: 700px) {
+  .settings:first-child {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
 }
 
 .settings__status {
